@@ -1,15 +1,15 @@
 <div>
     @if (session('message'))
-        <div class="alert-success">
-            {{session('message')}}
-        </div>
+    <div class="alert-success">
+        {{session('message')}}
+    </div>
     @endif
     <form wire:submit="store" >
         <div class="mb-3">
             <label for="title" class="form-label">Titolo</label>
             <input type="text" class="form-control" id="title" wire:model="title">
             @error('title')
-                <p class="text-danger">{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="mb-3">
@@ -17,17 +17,25 @@
             <input type="text" class="form-control" id="author" wire:model="author">
             @error('author')
             <p class="text-danger">{{$message}}</p>
-        @enderror
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" aria-label="Default select example" wire:model="category_id">
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Copertina</label>
             <input type="file" class="form-control" id="image" wire:model="image">
             @error('image')
             <p class="text-danger">{{$message}}</p>
-        @enderror
-        @if ($image)
+            @enderror
+            @if ($image)
             <img src="{{$image->temporaryUrl()}}" alt="" class="img-fluid">
-        @endif
+            @endif
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

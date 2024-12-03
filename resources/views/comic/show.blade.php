@@ -15,6 +15,9 @@
                 <h4>{{$comic->author}}</h4>
             </div>
             <div class="col-12 col-md-6">
+                <h4>{{$comic->category->name}}</h4>
+            </div>
+            <div class="col-12 col-md-6">
                 <p>Added by: {{$comic->user->name}}, {{$comic->created_at->format('d/m/Y')}}</p>
             </div>
         </div>

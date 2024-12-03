@@ -3,9 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Comic;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class ComicCreateForm extends Component
 {
@@ -13,6 +14,7 @@ class ComicCreateForm extends Component
     public $title ;
     public $author;
     public $image;
+    public $category_id;
 
     public function rules(){
         return[
@@ -35,14 +37,16 @@ class ComicCreateForm extends Component
             'title'=>$this->title,
             'author'=>$this->author,
             'image'=>$this->image->store('comics', 'public'),
-            'user_id'=>Auth::user()->id
+            'user_id'=>Auth::user()->id,
+            'category_id'=>$this->category_id,
         ]);
         session()->flash('message', 'Fumetto inserito');
         $this->reset();
     }
     public function render()
     {
-        return view('livewire.comic-create-form');
+        $categories=Category::all();
+        return view('livewire.comic-create-form', compact('categories'));
     }
 
     
