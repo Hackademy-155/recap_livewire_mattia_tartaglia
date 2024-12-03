@@ -20,7 +20,8 @@ class ComicController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        //
+        $comics=Comic::all();
+        return view('comic.index', compact('comics'));
     }
 
     /**
@@ -44,7 +45,7 @@ class ComicController extends Controller implements HasMiddleware
      */
     public function show(Comic $comic)
     {
-        //
+        return view('comic.show', compact('comic'));
     }
 
     /**
