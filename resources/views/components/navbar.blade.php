@@ -32,6 +32,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Profilo</a></li>
+                        <li><a class="dropdown-item" href="{{route('comic.create')}}">Inserisci fumetto</a></li>
                         <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</a><form action="{{route('logout')}}" method="POST" class="d-none" id="form-logout">@csrf</li>
                     </ul>
                 </li>
